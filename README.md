@@ -41,4 +41,5 @@ Results are written to `reports/reality-check.json`. The tests block the Adobe F
 
 - GitHub Pages, deployed by `.github/workflows/deploy.yml`. Settings → Pages → Source must be **GitHub Actions**, and the custom domain must be set to `hoagiestack.com`.
 - DNS is at Cloudflare. The apex and `www` point at GitHub Pages, the records are proxied, and SSL/TLS is set to **Full**. Full, not Flexible: Flexible causes redirect loops with GitHub Pages. Full, not strict: the site stays up even if GitHub is late renewing its certificate behind the proxy.
-- Email for the domain still runs through Hover. Keep the Hover MX record in Cloudflare DNS.
+- Email for the domain still runs through Hover. Keep the Hover MX record and the `mail` CNAME in Cloudflare DNS.
+- Step-by-step cutover from Vercel and Hover DNS, with rollback: [docs/cutover.md](docs/cutover.md).
