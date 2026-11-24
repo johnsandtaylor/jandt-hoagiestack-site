@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { CTA_LABEL, bookingUrl } from '../site';
+
+const reasons = [
+  { href: 'https://www.platformer.news/why-platformer-is-leaving-substack/', label: 'Platformer on leaving' },
+  { href: 'https://www.theatlantic.com/technology/archive/2024/01/substack-exodus-social-media-moderation/677113/', label: 'The Atlantic on the exodus' },
+  { href: 'https://mashable.com/article/why-are-people-leaving-substack-content-moderation-controversy', label: 'Mashable on moderation' },
+  { href: 'https://journalistspaythemselves.com/p/what-happens-when-you-leave-substack', label: 'What happens when you leave' },
+  { href: 'https://bsky.app/profile/wilwheaton.net/post/3lgvpu5p7is2d', label: 'Wil Wheaton on Bluesky' },
+];
+---
+<Base
+  title="Hoagiestack"
+  description="Substack isn't your only option. Joe Taylor Jr. of Johns & Taylor compares Kit, Ghost and WordPress for a 5,000-subscriber newsletter."
+>
+  <section class="section--blue hero on-blue" aria-labelledby="hero-title">
+    <div class="container">
+      <p class="eyebrow">A ridiculous primer on newsletter hosting by <a href="https://joetaylorjr.com">Joe Taylor Jr.</a></p>
+      <h1 id="hero-title">Substack isn't your only option.</h1>
+      <p class="lede">See what three alternatives our team has set up for writers cost at 5,000 subscribers, and what you give up with each.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href={bookingUrl('home-hero')}>{CTA_LABEL}</a>
+        <a class="btn btn--outline" href="/alternatives">Compare the alternatives</a>
+      </div>
+      <h2 class="sr-only" id="reasons-title">Why writers are leaving Substack</h2>
+      <p class="btn-note" style="margin-top:2.5rem">Plenty of writers have reasons to leave:</p>
+      <ul class="sources" aria-labelledby="reasons-title">
+        {reasons.map((r) => <li><a href={r.href}>{r.label}</a></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--cream" aria-labelledby="why-name">
+    <div class="container narrow prose">
+      <h2 id="why-name">Why “Hoagiestack?”</h2>
+      <p>Where I live, just outside Philadelphia, we call a footlong sandwich a hoagie. And just like you can build a hoagie out of all kinds of ingredients, you can roll your own version of Substack from off-the-shelf services or completely custom code.</p>
+      <p>I'm a user experience consultant, and I've been building content management tools for newsrooms and media businesses since 1998. One thing I've learned: never underestimate how much journalists don't want to work with a CMS.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="appeal">
+    <div class="container narrow prose">
+      <h2 id="appeal">Why Substack appeals to so many writers</h2>
+      <p>That CMS aversion is one reason I think Substack appeals to so many people who've left traditional media jobs to go hunting for their own <a href="https://kk.org/thetechnium/1000-true-fans/">1,000 true fans</a>.</p>
+      <p>Another big reason is the network. Substack promises to amplify your work across its own platform, and a lot of authors do get recommended to readers who already know how its subscriptions work. It feels almost effortless.</p>
+      <p>And if you just want to write, setting up an actual business is daunting — the business bank account, the online card payments, everything that has to exist before a reader can pay you. Substack makes that part easy, too.</p>
+
+      <h2>So why work harder and give up that exposure?</h2>
+      <p>When I assess content platforms for our clients at <a href="https://johnsandtaylor.com">Johns &amp; Taylor</a>, I ask a few questions:</p>
+      <ul class="checks">
+        <li>How comfortable would you be if your content host changed its terms of service overnight to something that's not favorable to you or your audience?</li>
+        <li>What happens if your host has a significant outage? Can you pick up your site and move it somewhere else?</li>
+        <li>Would it damage your credibility, or conflict with your values, if your host publicly supported something (or someone) you don't believe in?</li>
+      </ul>
+      <p>If you can live with the worst-case answers to those questions, you could be just fine on a <a href="https://www.usermag.co/p/discussing-free-speech-w-hamish">fully managed service like Substack</a>. Plenty of writers are.</p>
+      <p>But if you'd rather spend your time on your audience than on reacting to someone else's decisions, there are good alternatives. Our team has recommended and deployed three of them with our own clients.</p>
+      <p><a class="btn btn--ink" href="/alternatives">Compare Kit, Ghost, and WordPress</a></p>
+    </div>
+  </section>
+
+  <section class="section section--gray" aria-labelledby="where">
+    <div class="container">
+      <h2 id="where">Where are you right now?</h2>
+      <div class="grid grid--3" style="margin-top:2rem">
+        <article class="card">
+          <span class="badge" aria-hidden="true">1</span>
+          <h3>“I'm on Substack and starting to wonder.”</h3>
+          <p>Start with the three questions above. If one of them made you wince, it's worth a conversation.</p>
+          <a class="card__link" href={bookingUrl('home-path-wondering')}>{CTA_LABEL}</a>
+        </article>
+        <article class="card">
+          <span class="badge" aria-hidden="true">2</span>
+          <h3>“I'm starting a newsletter from scratch.”</h3>
+          <p>The comparison shows what each option costs at around 5,000 subscribers, and what you give up with each.</p>
+          <a class="card__link" href="/alternatives">See the comparison</a>
+        </article>
+        <article class="card">
+          <span class="badge" aria-hidden="true">3</span>
+          <h3>“I've decided to move and could use a hand.”</h3>
+          <p>That's what the no-pitch call is for: it's where we scope a move, and our managed WordPress setup starts at $149/mo.</p>
+          <a class="card__link" href={bookingUrl('home-path-moving')}>{CTA_LABEL}</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand placement="home-footer">
+    <p>Our J&amp;T team is happy to offer a no-pitch, half-hour conversation to help you work through the pros and cons of running your newsletter business yourself instead of relying on Substack. We'd love to hear what you're working on and who you're trying to reach.</p>
+    <p>Wishing you luck wherever you publish,<br /><strong>Joe Taylor Jr.</strong>, Managing Director, Johns &amp; Taylor</p>
+  </CtaBand>
+</Base>

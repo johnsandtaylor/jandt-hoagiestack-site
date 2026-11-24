@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+const posts = (await getCollection('blog')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Articles" description="Practical notes for writers who'd like their publishing setup to stay theirs: costs, trade-offs and how to choose a newsletter platform.">
+  <section class="section--cream hero hero--interior" aria-labelledby="page-title">
+    <div class="container">
+      <p class="eyebrow">Blog</p>
+      <h1 id="page-title">Articles</h1>
+      <p class="lede">Practical notes for writers who'd like their publishing setup to stay theirs.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-label="All articles">
+    <div class="container narrow">
+      <ul class="post-list">
+        {posts.map((post) => (
+          <li class="card post-card">
+            <h2><a href={`/blog/${post.id}`}>{post.data.title}</a></h2>
+            <p>{post.data.description}</p>
+          </li>
+        ))}
+      </ul>
+      <p style="margin-top:2rem">Start with the <a href="/alternatives">platform comparison</a> or the <a href="/about">story behind the name</a>.</p>
+    </div>
+  </section>
+
+  <CtaBand placement="blog-index" />
+</Base>

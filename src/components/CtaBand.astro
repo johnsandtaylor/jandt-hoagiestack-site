@@ -1,0 +1,21 @@
+---
+import { CTA_LABEL, bookingUrl } from '../site';
+
+interface Props {
+  placement: string;
+  heading?: string;
+}
+const { placement, heading = 'Let us help.' } = Astro.props;
+---
+<section class="section section--blue cta-band on-blue" aria-labelledby={`cta-${placement}`}>
+  <div class="container">
+    <h2 id={`cta-${placement}`}>{heading}</h2>
+    <slot>
+      <p>Our J&amp;T team is happy to offer a no-pitch, half-hour conversation to help you work through the pros and cons of running your newsletter business yourself instead of relying on Substack. We'd love to hear what you're working on and who you're trying to reach.</p>
+    </slot>
+    <div class="btn-row">
+      <a class="btn btn--primary" href={bookingUrl(placement)}>{CTA_LABEL}</a>
+    </div>
+    <p class="btn-note">Half an hour. No pitch.</p>
+  </div>
+</section>

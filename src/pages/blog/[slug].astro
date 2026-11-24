@@ -1,0 +1,40 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const url = new URL(`/blog/${post.id}`, Astro.site).href;
+const jsonLd = {
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  url,
+  mainEntityOfPage: url,
+  author: { '@type': 'Person', name: 'Joe Taylor Jr.', url: 'https://joetaylorjr.com' },
+  publisher: { '@id': 'https://johnsandtaylor.com/#org' },
+};
+---
+<Base title={post.data.title} seoTitle={post.data.seoTitle} description={post.data.description} type="article" jsonLd={jsonLd}>
+  <article>
+    <header class="section--cream hero hero--interior">
+      <div class="container narrow">
+        <a class="back-link" href="/blog">← All articles</a>
+        <h1 style="margin-top:1rem">{post.data.title}</h1>
+        <p class="btn-note">By <a href="https://joetaylorjr.com">Joe Taylor Jr.</a>, Managing Director, Johns &amp; Taylor</p>
+      </div>
+    </header>
+    <div class="section">
+      <div class="container narrow prose">
+        <Content />
+      </div>
+    </div>
+  </article>
+  <CtaBand placement={`post-${post.id.slice(0, 40)}`} heading="Want to talk through your own numbers?" />
+</Base>
