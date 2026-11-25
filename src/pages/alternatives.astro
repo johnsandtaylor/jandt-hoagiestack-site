@@ -15,6 +15,17 @@ const plans = [
     linkNote: '(affiliate link)',
   },
   {
+    name: 'WordPress',
+    featured: true,
+    price: '$149',
+    priceNote: '†',
+    tag: 'Custom · built on our Hoagiestack theme',
+    pro: 'Hoagiestack, the custom WordPress theme we build for our clients, gives you Substack-style publishing on a site you own and can move between hosts.',
+    con: 'No built-in recommendation network. It needs ongoing maintenance to stay secure, and our plan covers that.',
+    href: bookingUrl('alternatives-wordpress'),
+    linkLabel: 'Book a call about Hoagiestack',
+  },
+  {
     name: 'Ghost',
     price: '$239',
     tag: 'Managed',
@@ -22,16 +33,6 @@ const plans = [
     con: "Self-hosting is possible but complex; you're on your own for growth.",
     href: 'https://ghost.org/',
     linkLabel: 'Visit Ghost',
-  },
-  {
-    name: 'WordPress',
-    price: '$149',
-    priceNote: '**',
-    tag: "Assembled · our team's managed WordPress setup",
-    pro: 'Easy to move between hosts; licensed plugins can handle memberships.',
-    con: 'No built-in recommendation network; needs ongoing maintenance to stay secure.',
-    href: bookingUrl('alternatives-wordpress'),
-    linkLabel: 'Book a call about WordPress',
   },
 ];
 ---
@@ -52,8 +53,8 @@ const plans = [
       <h2 id="compare-title" class="sr-only">Newsletter platform alternatives comparison</h2>
       <div class="compare-cards">
         {plans.map((p) => (
-          <article class="card plan" aria-labelledby={`plan-${p.name}`}>
-            <h3 id={`plan-${p.name}`}>{p.name}</h3>
+          <article class:list={['card', 'plan', { 'plan--featured': p.featured }]} aria-labelledby={`plan-${p.name}`}>
+            <h3 id={`plan-${p.name}`}>{p.name}{p.featured && <> <span class="plan__flag">Our pick</span></>}</h3>
             <p class="plan__tag">{p.tag}</p>
             <p class="plan__price">{p.price}<small>/mo*{p.priceNote}</small></p>
             <dl>
@@ -67,7 +68,7 @@ const plans = [
 
       <div class="footnotes">
         <p>* Assumes 5,000 subscribers across free and paid tiers and up to 50,000 emails a month. Prices checked September 2026.</p>
-        <p>** Includes monthly hosting and email delivery, plus expert setup and annual maintenance spread across the year.</p>
+        <p>† Includes monthly hosting, outbound email delivered through SendGrid (we manage it for you), and setup and annual maintenance of your Hoagiestack site spread across the year. Stripe's subscription processing fees are separate and paid by you. They typically run 3–7% of each payment, depending on where you're based and which tier of service you're on.</p>
         <p>Ghost's Business plan is billed monthly without the annual discount and includes priority support; billed annually, the same plan is $199/mo. Ghost prices by member count, so a 5,000-member list lands on its Business plan rather than its Publisher plan.</p>
       </div>
     </div>
@@ -76,7 +77,7 @@ const plans = [
   <section class="section section--gray" aria-labelledby="managed">
     <div class="container narrow prose">
       <h2 id="managed">Managed or assembled?</h2>
-      <p>Kit and Ghost's hosted plans are managed. You pay for convenience and support, and someone else keeps the lights on. WordPress is assembled. You pick the parts and keep more portability, and someone — you, or a consultant you trust — has to maintain it.</p>
+      <p>Kit and Ghost's hosted plans are managed. You pay for convenience and support, and someone else keeps the lights on. WordPress is assembled. You pick the parts and keep more portability, and someone — you, or a consultant you trust — has to maintain it. For our clients, that's us: we build on Hoagiestack, our own custom WordPress theme, and look after the hosting, SendGrid email delivery, and upkeep.</p>
       <p>There are plenty of other Substack alternatives worth a look, but these are the three our team has had good experiences with. Beehiiv is a strong alternative, and it's missing from this list for one reason: it has the same portability problem. A principle we work by at Johns &amp; Taylor is that you shouldn't be stuck on a platform if it changes its terms and conditions, or if one of its founders does something that goes against your values or your audience's.</p>
       <p>Whatever you choose, budget for Stripe's payment processing fees — 2.9% plus 30 cents on each successful charge for standard US cards, as of September 2026 — and $10–20 a year for your own domain.</p>
     </div>
